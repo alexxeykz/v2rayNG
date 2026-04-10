@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.stoun.vpn"
+    namespace = "com.v2ray.ang"
     compileSdk = 36
 
     defaultConfig {
