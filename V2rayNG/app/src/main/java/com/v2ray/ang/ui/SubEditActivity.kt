@@ -90,17 +90,18 @@ class SubEditActivity : BaseActivity() {
             toast(R.string.sub_setting_remarks)
             return false
         }
-        if (subItem.url.isNotEmpty()) {
-            if (!Utils.isValidUrl(subItem.url)) {
-                toast(R.string.toast_invalid_url)
+        if (TextUtils.isEmpty(subItem.url)) {
+            toast(R.string.sub_setting_url_required)
+            return false
+        }
+        if (!Utils.isValidUrl(subItem.url)) {
+            toast(R.string.toast_invalid_url)
+            return false
+        }
+        if (!Utils.isValidSubUrl(subItem.url)) {
+            toast(R.string.toast_insecure_url_protocol)
+            if (!subItem.allowInsecureUrl) {
                 return false
-            }
-
-            if (!Utils.isValidSubUrl(subItem.url)) {
-                toast(R.string.toast_insecure_url_protocol)
-                if (!subItem.allowInsecureUrl) {
-                    return false
-                }
             }
         }
 
