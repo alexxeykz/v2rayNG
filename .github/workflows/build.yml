@@ -95,8 +95,7 @@ jobs:
         cd ${{ github.workspace }}/V2rayNG
         echo "sdk.dir=${ANDROID_HOME}" > local.properties
         chmod 755 gradlew
-        ./gradlew licenseFdroidReleaseReport
-        ./gradlew assembleRelease \
+        ./gradlew assemblePlaystoreRelease \
           -Pandroid.injected.signing.store.file=${{ github.workspace }}/stoun.jks \
           -Pandroid.injected.signing.store.password=StounVPN2024! \
           -Pandroid.injected.signing.key.alias=stoun \
@@ -107,7 +106,7 @@ jobs:
       if: ${{  success() }}
       with:
         name: Stoun-android
-        path: ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/*/release/*.apk
+        path: ${{ github.workspace }}/V2rayNG/app/build/outputs/apk/playstore/release/*.apk
 
     - name: Upload to release
       uses: svenstaro/upload-release-action@v2
